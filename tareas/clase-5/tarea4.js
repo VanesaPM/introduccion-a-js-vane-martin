@@ -44,8 +44,36 @@ for (let i = 0; i < arrayDeValores.length; i++) {
 }
 console.log(maximo);
 
-let numeroMasRepetido = 0;
-let repetido = [];
+function obtenerNumeroMasRepetido(arrayDeValores) {
+  let numeroMasRepetido = 0;
+  let cantidadNumeroMasRepetido = 1;
+  for (let i = 0; i < arrayDeValores.length; i++) {
+    let cantidadRepeticiones = 0;
+    for (let j = 0; j < arrayDeValores.length; j++) {
+      if (arrayDeValores[i] === arrayDeValores[j]) {
+        cantidadRepeticiones++;
+      }
+    }
+    if (cantidadRepeticiones > cantidadNumeroMasRepetido) {
+      cantidadNumeroMasRepetido = cantidadRepeticiones;
+      numeroMasRepetido = arrayDeValores[i];
+    }
+  }
+  return numeroMasRepetido;
+}
+console.log(obtenerNumeroMasRepetido(arrayDeValores));
 
-
-console.log(repetido);
+function calcular() {
+  const numeroPromedio = document.querySelector("#promedio");
+  numeroPromedio.textContent = `El promedio es ${calcularPromedio(
+    arrayDeValores
+  )}`;
+  const numeroMenor = document.querySelector("#menor");
+  numeroMenor.textContent = `El numero mas pequeño es ${minimo}`;
+  const numeroMayor = document.querySelector("#mayor");
+  numeroMayor.textContent = `El numero mas grande es ${maximo}`;
+  const frecuente = document.querySelector("#frecuente");
+  frecuente.textContent = `El numero que mas se repite es ${obtenerNumeroMasRepetido(
+    arrayDeValores
+  )}`;
+}
