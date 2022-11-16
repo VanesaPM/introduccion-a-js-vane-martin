@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h2>Encuesta familiar</h2>
+    </header>
+    <form>
+      <label>Ingrese la cantidad de integrantes de la familia</label>
+      <input type="number" id="cantidad-integrantes" />
+      <button type="submit" id="continuar">Continuar</button>
+      <br />
+      <div id="integrantes"></div>
+      <br />
+      <button type="button" id="calcular-edades" class="oculto">
+        Calcular edades
+      </button>
+
+      <div id="calculos-edad" class="oculto">
+        <p id="mayor-edad">La mayor edad es:</p>
+        <p id="menor-edad">La menor edad es:</p>
+        <p id="promedio-edad">El promedio de edad es:</p>
+      </div>
+
+      <button type="button" id="agregar-salario-anual" class="oculto">
+        Agregar salario anual
+      </button>
+      <br />
+      <div id="salario-anual"></div>
+      <br />
+
+      <button type="button" id="calcular-salarios" class="oculto">
+        Calcular salarios
+      </button>
+
+      <div id="calculos-salario" class="oculto">
+        <p id="mayor-salario-anual">El mayor salario anual es:</p>
+        <p id="menor-salario-anual">El menor salario anual es:</p>
+        <p id="promedio-salario-anual">El promedio de salario anual es:</p>
+        <p id="promedio-salario-mensual">El promedio de salario mensual es:</p>
+      </div>
+
+      <button type="reset" id="resetear">Empezar de nuevo</button>
+    </form>
+    <script src="clase-6-rehecho.js"></script>
+  </body>
+</html>

@@ -1,66 +1,87 @@
-// TAREA: Empezar preguntando cuánta gente hay en el grupo familiar.
-// Crear tantos inputs+labels como gente haya para completar la edad de cada integrante.
-// Al hacer click en "calcular", mostrar en un elemento pre-existente la mayor edad,
-// la menor edad y el promedio del grupo familiar.
+/*
+TAREA: Empezar preguntando cuánta gente hay en el grupo familiar.
+Crear tantos inputs+labels como gente haya para completar la edad de cada integrante.
+Al hacer click en "calcular", mostrar en un elemento pre-existente la mayor edad,
+la menor edad y el promedio del grupo familiar.
 
-// Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuevamente,
-// borrando los inputs ya creados (investigar cómo en MDN).
+Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuevamente,
+borrando los inputs ya creados (investigar cómo en MDN).
+*/
 
-function calcularMayorEdad(numeros) {
-  let mayorEdad = numeros[0];
-  for (let i = 1; i < numeros.length; i++) {
-    if (numeros[i] > mayorEdad) {
-      mayorEdad = numeros[i];
+function crearIntegrantes() {
+  const $cantidad = document.querySelector("#cantidad");
+  const cantidad = $cantidad.value;
+  console.log(cantidad);
+  for (let i = 0; i < cantidad; i++) {
+    const $label = document.createElement("label");
+    $label.textContent = `Integrante ${i + 1}`;
+    const $input = document.createElement("input");
+    $input.type = "number";
+    $input.className = "numero";
+    $label.appendChild($input);
+    document.querySelector("#integrantes").appendChild($label);
+    document
+      .querySelector("#integrantes")
+      .appendChild(document.createElement("br"));
+  }
+}
+
+let edades = [];
+function obtenerEdad() {
+  const $integrantes = document.querySelectorAll(".numero");
+
+  for (let i = 0; i < $integrantes.length; i++) {
+    edades.push(Number($integrantes[i].value));
+  }
+  console.log(edades);
+  return edades;
+}
+function calcularMayorEdad() {
+  let mayorEdad = edades[0];
+  for (let i = 1; i < edades.length; i++) {
+    if (edades[i] > mayorEdad) {
+      mayorEdad = edades[i];
     }
   }
   return mayorEdad;
 }
 
-function calcularMenorEdad(numeros) {
-  let menorEdad = numeros[0];
-  for (let i = 1; i < numeros.length; i++) {
-    if (numeros[i] < menorEdad) {
-      menorEdad = numeros[i];
+function calcularMenorEdad() {
+  let menorEdad = edades[0];
+  for (let i = 1; i < edades.length; i++) {
+    if (edades[i] < menorEdad) {
+      menorEdad = edades[i];
     }
   }
   return menorEdad;
 }
 
-function calcularPromedio(numeros) {
-  let promedio = 0;
-  for (let i = 0; i < numeros.length; i++) {
-    promedio += numeros[i] / numeros.length;
+function calcularPromedio() {
+  let totalEdad = 0;
+  for (let i = 0; i < edades.length; i++) {
+    totalEdad += edades[i];
   }
-  return promedio;
+  return totalEdad / edades.length;
 }
-const continuar = document.querySelector("#proximo-paso");
-continuar.onclick = function (event) {
-  let $cantidadIntegrantes = document.querySelector("#cantidad-de-integrantes");
-  let cantidadIntegrantes = $cantidadIntegrantes.value;
-  console.log(cantidadIntegrantes);
-
-  crearIntegrante(cantidadIntegrantes);
-  crearIntegrantes(cantidadIntegrantes);
-  event.preventDefault();
-};
-
-function crearIntegrantes(cantidadIntegrantes) {
-  for (let i = 0; i < cantidadIntegrantes; i++) {
-    crearIntegrante[i];
-  }
+function calcular() {
+  obtenerEdad();
+  const mayor = document.querySelector("#mayor");
+  mayor.textContent = `La mayor edad es ${calcularMayorEdad()}`;
+  const menor = document.querySelector("#menor");
+  menor.textContent = `La menor edad es ${calcularMenorEdad()}`;
+  const promedio = document.querySelector("#promedio");
+  promedio.textContent = `El promedio de edad es ${calcularPromedio()}`;
 }
 
-function crearIntegrante(indice) {
-  const $div = document.createElement("div");
-  $div.className = "integrante";
-  const $label = document.createElement("label");
-  $label.textContent = "Edad del integrante #" + indice + 1;
-  const $input = document.createElement("input");
-  $input.type = "number";
-
-  $div.appendChild($label);
-  $div.appendChild($input);
-
-  const $integrante = document.querySelector("#integrantes");
-  $integrante.appendChild($div);
-}
+/*function borrar() {
+  const integrantes = document.querySelector("#integrantes");
+  integrantes.remove;
+  const mayor = document.querySelector("#mayor");
+  mayor.remove;
+  const menor = document.querySelector("#menor");
+  menor.remove;
+  const promedio = document.querySelector("#promedio");
+  promedio.remove;
+  //const integrantes = document.querySelector("#integrantes");
+  //integrantes.value = "";
+}*/
