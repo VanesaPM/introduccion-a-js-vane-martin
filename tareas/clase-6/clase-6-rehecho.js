@@ -19,17 +19,11 @@ menor salario anual, salario anual promedio y salario mensual promedio.
 
 Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como 0).
 */
-let $cantidadIntegrantes;
-let cantidadIntegrantes;
 
-document.querySelector("#siguiente").onclick = function (event) {
-  $cantidadIntegrantes = document.querySelector("#cantidad-integrantes");
-  cantidadIntegrantes = Number($cantidadIntegrantes.value);
-
-  borrarIntegrantesAnteriores();
-  crearIntegrantes(cantidadIntegrantes);
-
+document.querySelector("#continuar").onclick = function (event) {
   event.preventDefault();
+  iniciarProceso();
+  borrarIntegrantesAnteriores();
 };
 
 document.querySelector("#calcular-edades").onclick = function (event) {
@@ -37,7 +31,6 @@ document.querySelector("#calcular-edades").onclick = function (event) {
   calcularMayorEdad();
   calcularMenorEdad();
   calcularPromedioEdad();
-
   mostrarResultadoEdades();
   event.preventDefault();
 };
@@ -48,10 +41,24 @@ document.querySelector("#resetear").onclick = function resetear() {
   borrarDatosAnteriores();
   ocultarAgragrSalarioAnual();
   ocultarBotonCalcularSalario();
+  haxs;
   borrarSalarios();
   ocultarAgragrSalarioAnual();
   ocultarResultadoSalarios();
 };
+
+let $cantidadIntegrantes;
+let cantidadIntegrantes;
+
+function iniciarProceso() {
+  obtenerCantidadIntegrantes();
+  crearIntegrantes(cantidadIntegrantes);
+}
+
+function obtenerCantidadIntegrantes() {
+  $cantidadIntegrantes = document.querySelector("#cantidad-integrantes");
+  cantidadIntegrantes = Number($cantidadIntegrantes.value);
+}
 
 function crearIntegrantes(cantidadIntegrantes) {
   for (let i = 0; i < cantidadIntegrantes; i++) {
